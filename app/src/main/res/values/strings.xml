@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MindHelper</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="poruchy">Poruchy</string>
+    <string name="deprese">Deprese</string>
+    <string name="deprese_text">Jedna z nejčastějších duševních poruch</string>
+    <string name="deprese_priznaky_text">Skleslost, poruchy spánku, pokles energie, snížené seběvědomí, pocity méněcennosti</string>
+    <string name="priznaky">Příznaky</string>
+    <string name="uzkost">Úzkost</string>
+    <string name="panik">Panické ataky</string>
+    <string name="adhd">ADHD</string>
+    <string name="schizofrenie">Schizofrenie</string>
+    <string name="BPD">Hraniční Porucha Osobnosti</string>
+    <string name="ukoly">Úkoly\n Udělej tyto tři úkoly</string>
+    <string name="ukoly_nav">Úkoly</string>
+    <string name="splneno">Dobrá práce, splnil jsi všechny úkoly!</string>
+    <string name="channel_name">channel1</string>
+    <string name="channel_desc">channel one</string>
+    <string name="title_activity_notification_fire">NotificationFire</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+</resources>

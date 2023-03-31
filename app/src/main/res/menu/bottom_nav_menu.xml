@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/contactFragment"
+        android:icon="@drawable/ic_baseline_call_24"
+        android:title="Kontakty" />
+    <item
+        android:id="@+id/taskFragment"
+        android:icon="@drawable/ic_baseline_check_24"
+        android:title="@string/ukoly_nav" />
+    <item
+        android:id="@+id/disFragment"
+        android:icon="@drawable/brain"
+        android:title="@string/poruchy" />
+</menu>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/taskFragment">
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.mindhelper.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.mindhelper.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/disFragment"
+        android:name="com.example.mindhelper.DisFragment"
+        android:label="fragment_dis"
+        tools:layout="@layout/fragment_dis" >
+        <action
+            android:id="@+id/action_disFragment_to_depFragment"
+            app:destination="@id/depFragment" />
+        <action
+            android:id="@+id/action_disFragment_to_bpdFragment"
+            app:destination="@id/bpdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/depFragment"
+        android:name="com.example.mindhelper.DepFragment"
+        android:label="fragment_dep"
+        tools:layout="@layout/fragment_dep" />
+    <fragment
+        android:id="@+id/bpdFragment"
+        android:name="com.example.mindhelper.BpdFragment"
+        android:label="fragment_bpd"
+        tools:layout="@layout/fragment_bpd" />
+</navigation>
