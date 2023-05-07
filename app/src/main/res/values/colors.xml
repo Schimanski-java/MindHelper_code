@@ -11,6 +11,6 @@
     <color name="bottom_nav_background">#FF5A5A5A</color>
     <color name="bottom_nav_item">#FFFFFFFF</color>
     <color name="bottom_nav_selected_item">#FF00004D</color>
-    <color name="background_color">#FF5A5A5A</color>
+    <color name="background_color">#FFA3A0A0</color>
 
 </resources>

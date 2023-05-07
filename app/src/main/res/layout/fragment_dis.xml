@@ -13,57 +13,43 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button_anxiety"
+            android:id="@+id/button_anx"
             style="@style/ButtonDisStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="52dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/uzkost"
+            android:text="@string/anx"
             app:layout_constraintBottom_toTopOf="@+id/button_dep"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/disText" />
 
         <Button
             android:id="@+id/button_dep"
             style="@style/ButtonDisStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/deprese"
-            app:layout_constraintBottom_toTopOf="@+id/button_adhd"
+            android:text="@string/dep"
+            app:layout_constraintBottom_toTopOf="@+id/button_ed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_anxiety" />
+            app:layout_constraintTop_toBottomOf="@+id/button_anx" />
 
         <Button
-            android:id="@+id/button_adhd"
+            android:id="@+id/button_ptsd"
             style="@style/ButtonDisStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/adhd"
-            app:layout_constraintBottom_toTopOf="@+id/button_panik"
+            android:text="@string/ptsd"
+            app:layout_constraintBottom_toTopOf="@+id/button_bpd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_dep" />
-
-        <Button
-            android:id="@+id/button_panik"
-            style="@style/ButtonDisStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/panik"
-            app:layout_constraintBottom_toTopOf="@+id/button_schizofrenie"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_adhd" />
+            app:layout_constraintTop_toBottomOf="@+id/button_ed" />
 
         <Button
             android:id="@+id/button_bpd"
@@ -72,40 +58,64 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/BPD"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/bpd"
+            app:layout_constraintBottom_toTopOf="@+id/button_schizo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_schizofrenie" />
+            app:layout_constraintTop_toBottomOf="@+id/button_ptsd" />
 
         <Button
-            android:id="@+id/button_schizofrenie"
+            android:id="@+id/button_person"
             style="@style/ButtonDisStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/schizofrenie"
-            app:layout_constraintBottom_toTopOf="@+id/button_bpd"
+            android:text="@string/person"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_panik" />
+            app:layout_constraintTop_toBottomOf="@+id/button_schizo" />
+
+        <Button
+            android:id="@+id/button_schizo"
+            style="@style/ButtonDisStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/schizo"
+            app:layout_constraintBottom_toTopOf="@+id/button_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_bpd" />
 
         <TextView
             android:id="@+id/disText"
             style="@style/HeadStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:text="@string/poruchy"
             android:textColor="@color/black"
             android:textSize="32sp"
             app:fontFamily="@font/amethysta"
-            app:layout_constraintBottom_toTopOf="@+id/button_anxiety"
+            app:layout_constraintBottom_toTopOf="@+id/button_anx"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_ed"
+            style="@style/ButtonDisStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ed"
+            app:layout_constraintBottom_toTopOf="@+id/button_ptsd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_dep" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

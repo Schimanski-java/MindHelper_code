@@ -14,7 +14,23 @@
         android:id="@+id/contactFragment"
         android:name="com.example.mindhelper.ContactFragment"
         android:label="fragment_contact"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/fragment_contact" >
+        <action
+            android:id="@+id/action_contactFragment_to_lbFragment"
+            app:destination="@id/lbFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_opFragment"
+            app:destination="@id/opFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_lppFragment"
+            app:destination="@id/lppFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_terFragment"
+            app:destination="@id/terFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_lpoFragment"
+            app:destination="@id/lpoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/disFragment"
         android:name="com.example.mindhelper.DisFragment"
@@ -26,6 +42,21 @@
         <action
             android:id="@+id/action_disFragment_to_bpdFragment"
             app:destination="@id/bpdFragment" />
+        <action
+            android:id="@+id/action_disFragment_to_edFragment2"
+            app:destination="@id/edFragment" />
+        <action
+            android:id="@+id/action_disFragment_to_ptsdFragment"
+            app:destination="@id/ptsdFragment" />
+        <action
+            android:id="@+id/action_disFragment_to_schizoFragment"
+            app:destination="@id/schizoFragment" />
+        <action
+            android:id="@+id/action_disFragment_to_personFragment"
+            app:destination="@id/personFragment" />
+        <action
+            android:id="@+id/action_disFragment_to_anxFragment"
+            app:destination="@id/anxFragment" />
     </fragment>
     <fragment
         android:id="@+id/depFragment"
@@ -37,4 +68,52 @@
         android:name="com.example.mindhelper.BpdFragment"
         android:label="fragment_bpd"
         tools:layout="@layout/fragment_bpd" />
+    <fragment
+        android:id="@+id/edFragment"
+        android:name="com.example.mindhelper.EdFragment"
+        android:label="fragment_ed"
+        tools:layout="@layout/fragment_ed" />
+    <fragment
+        android:id="@+id/anxFragment"
+        android:name="com.example.mindhelper.AnxFragment"
+        android:label="fragment_person"
+        tools:layout="@layout/fragment_person" />
+    <fragment
+        android:id="@+id/ptsdFragment"
+        android:name="com.example.mindhelper.PtsdFragment"
+        android:label="fragment_ptsd"
+        tools:layout="@layout/fragment_ptsd" />
+    <fragment
+        android:id="@+id/schizoFragment"
+        android:name="com.example.mindhelper.SchizoFragment"
+        android:label="fragment_schizo"
+        tools:layout="@layout/fragment_schizo" />
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.example.mindhelper.PersonFragment"
+        android:label="PersonFragment" />
+    <fragment
+        android:id="@+id/lbFragment"
+        android:name="com.example.mindhelper.LbFragment"
+        android:label="fragment_lb"
+        tools:layout="@layout/fragment_lb" />
+    <fragment
+        android:id="@+id/opFragment"
+        android:name="com.example.mindhelper.OpFragment"
+        android:label="fragment_ter"
+        tools:layout="@layout/fragment_ter" />
+    <fragment
+        android:id="@+id/lppFragment"
+        android:name="com.example.mindhelper.LppFragment"
+        android:label="fragment_lpp"
+        tools:layout="@layout/fragment_lpp" />
+    <fragment
+        android:id="@+id/terFragment"
+        android:name="com.example.mindhelper.TerFragment"
+        android:label="TerFragment" />
+    <fragment
+        android:id="@+id/lpoFragment"
+        android:name="com.example.mindhelper.LpoFragment"
+        android:label="fragment_lpo"
+        tools:layout="@layout/fragment_lpo" />
 </navigation>

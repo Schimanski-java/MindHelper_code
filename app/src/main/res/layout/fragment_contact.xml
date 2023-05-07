@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactFragment">
+    android:background="@color/background_color"
+    tools:context=".LbFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_lines"
+                style="@style/TextHeadStyle"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Linky" />
+
+            <Button
+                android:id="@+id/button_lb"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Linka bezpečí" />
+
+            <Button
+                android:id="@+id/button_lpp"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Linka první psychické pomoci" />
+
+            <Button
+                android:id="@+id/button_lpo"
+                style="@style/ButtonDisStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="Linka pomoci obětem kriminality"/>
+
+            <TextView
+                android:id="@+id/text_links"
+                style="@style/TextHeadStyle"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stránky" />
+
+            <Button
+                android:id="@+id/button_opatruj"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Opatruj se" />
+
+            <Button
+                android:id="@+id/button_terapie"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Online terapie" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
+

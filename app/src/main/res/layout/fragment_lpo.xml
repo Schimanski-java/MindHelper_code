@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".LpoFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_lpo_head"
+                style="@style/TextHeadStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Linka pomoci obětem kriminality" />
+
+            <TextView
+                android:id="@+id/text_lpo"
+                style="@style/TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_lpo" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TableRow>
+                    <TextView
+                        android:text="Telefonní číslo"
+                        style="@style/TextStyle"
+                        android:padding="3dip" />
+                    <TextView
+                        android:text="116 006"
+                        style="@style/TextStyle"
+                        android:gravity="right"
+                        android:padding="3dip" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Webové stránky"
+                        style="@style/TextStyle"
+                        android:padding="3dip" />
+                    <TextView
+                        android:text="116006.cz"
+                        style="@style/TextStyle"
+                        android:gravity="right"
+                        android:padding="3dip" />
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/button_call_lpo"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volat Linku pomoci obětem kriminality" />
+
+            <Button
+                android:id="@+id/button_website_lpo"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Navšítvit stránku Linky pomoci obětem kriminality" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

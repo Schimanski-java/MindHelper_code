@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".BpdFragment">
+    tools:context=".AnxFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,46 +17,47 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_bpd_nadpis"
+                android:id="@+id/text_anx_nadpis"
                 style="@style/TextHeadStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bpd" />
+                android:text="@string/anx" />
 
             <TextView
-                android:id="@+id/text_bpd"
+                android:id="@+id/text_anx"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bpd_text" />
+                android:text="@string/anx_text" />
 
             <TextView
-                android:id="@+id/text_bpd_priznaky_nadpis"
+                android:id="@+id/text_anx_priznaky_nadpis"
                 style="@style/TextHeadStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/priznaky" />
 
             <TextView
-                android:id="@+id/text_bpd_priznaky"
+                android:id="@+id/text_anx_priznaky"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bpd_priznaky_text" />
+                android:text="@string/anx_priznaky_text" />
 
             <TextView
-                android:id="@+id/text_bpd_lecba_nadpis"
+                android:id="@+id/text_anx_lecba_nadpis"
                 style="@style/TextHeadStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lecba" />
 
             <TextView
-                android:id="@+id/text_bpd_lecba"
+                android:id="@+id/text_anx_lecba"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bpd_lecba_text" />
+                android:text="@string/anx_lecba_text" />
         </LinearLayout>
     </ScrollView>
+
 </FrameLayout>

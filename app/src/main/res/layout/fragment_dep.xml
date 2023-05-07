@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".DepFragment">
 
     <ScrollView
@@ -16,46 +17,46 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/text_dep_nadpis"
                 style="@style/TextHeadStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/deprese" />
+                android:text="@string/dep" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/text_dep"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/deprese_text" />
+                android:text="@string/dep_text" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/text_dep_priznaky_nadpis"
                 style="@style/TextHeadStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/priznaky" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/text_dep_priznaky"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/deprese_priznaky_text" />
+                android:text="@string/dep_priznaky_text" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/text_dep_lecba_nadpis"
                 style="@style/TextHeadStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/lecba" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/text_dep_lecba"
                 style="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/dep_lecba_text" />
         </LinearLayout>
     </ScrollView>
 

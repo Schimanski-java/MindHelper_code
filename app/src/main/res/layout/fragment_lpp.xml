@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".LppFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_lpp_head"
+                style="@style/TextHeadStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Linka první psychické pomoci" />
+
+            <TextView
+                android:id="@+id/text_ed"
+                style="@style/TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_lpp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TableRow>
+                    <TextView
+                        android:text="Telefonní číslo (dospělí)"
+                        style="@style/TextStyle"
+                        android:padding="3dip" />
+                    <TextView
+                        android:text="116 123"
+                        style="@style/TextStyle"
+                        android:gravity="right"
+                        android:padding="3dip" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Telefonní číslo (rodina)"
+                        style="@style/TextStyle"
+                        android:padding="3dip" />
+                    <TextView
+                        android:text="116 000"
+                        style="@style/TextStyle"
+                        android:gravity="right"
+                        android:padding="3dip" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Webové stránky"
+                        style="@style/TextStyle"
+                        android:padding="3dip" />
+                    <TextView
+                        android:text="cestazkrize.net"
+                        style="@style/TextStyle"
+                        android:gravity="right"
+                        android:padding="3dip" />
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/button_call_lpp_r"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volat Linku První psychické pomoci (rodina)" />
+
+            <Button
+                android:id="@+id/button_call_lpp_d"
+                style="@style/ButtonDisStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volat Linku První psychické pomoci (dospělí)" />
+
+            <Button
+                android:id="@+id/button_website_lpp"
+                style="@style/ButtonDisStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="Navštívit stránku linky první psychické"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

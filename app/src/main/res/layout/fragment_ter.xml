@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".OpFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+            android:id="@+id/text_ter_head"
+            style="@style/TextHeadStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terapie\n" />
+
+            <TextView
+                android:id="@+id/text_ter"
+                style="@style/TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_ter" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TableRow>
+                    <TextView
+                        android:text="Webová stránka"
+                        style="@style/TextStyle"
+                        android:padding="3dip" />
+                    <TextView
+                        android:text="terapie.cz"
+                        style="@style/TextStyle"
+                        android:gravity="right"
+                        android:padding="3dip" />
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/button_website_ter"
+                style="@style/ButtonDisStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="Navštívit stránku Terapie"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
