@@ -1,25 +1,30 @@
 package com.example.mindhelper
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.widget.CheckBox
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.viewModels
-import com.example.mindhelper.databinding.FragmentTaskBinding
-
+import androidx.core.content.edit
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
 
-
     override fun onReceive(context: Context, intent: Intent) {
-            Log.i("NOTE","Notifying")
-            val notificationUtils = NotiUtils(context)
-            val notification = notificationUtils.getNotificationBuilder().build()
-            notificationUtils.getManager().notify(150, notification)
-    }
+        val notificationUtils = NotiUtils(context)
+        val notification = notificationUtils.getNotificationBuilder().build()
+        notificationUtils.getManager().notify(101, notification)
 
+        val sharedPrefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPrefs.edit {
+            putBoolean("checkbox1", false).apply()
+            putBoolean("checkbox2", false).apply()
+            putBoolean("checkbox3", false).apply()
+        }
+
+        val updateCheckboxesIntent = Intent("com.example.mindhelper.UPDATE_CHECKBOXES")
+        LocalBroadcastManager.getInstance(context)
+            .sendBroadcast(updateCheckboxesIntent)
+    }
 }

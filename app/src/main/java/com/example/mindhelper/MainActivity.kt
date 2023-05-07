@@ -1,12 +1,23 @@
 package com.example.mindhelper
 
+
+import android.Manifest
 import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.*
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -16,56 +27,54 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var alarmMgr: AlarmManager? = null
-    private lateinit var alarmIntent: PendingIntent
-
     private lateinit var navController: NavController
+
+    private val PERMISSION_POST_NOTIFICATIONS = Manifest.permission.POST_NOTIFICATIONS
+    private val REQUEST_CODE_POST_NOTIFICATIONS = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name)
-            val descriptionText = getString(R.string.channel_desc)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val mChannel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(mChannel)
-        }*/
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment
         navController = navHostFragment.navController
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNav)
         setupWithNavController(bottomNavigationView, navController)
+
+        val updateCheckboxesIntent = Intent("com.example.mindhelper.UPDATE_CHECKBOXES")
+        LocalBroadcastManager.getInstance(this)
+            .sendBroadcast(updateCheckboxesIntent)
+
+        val alarmServiceIntent = Intent(this, AlarmService::class.java)
+        startService(alarmServiceIntent)
+
+        requestPostNotificationsPermission()
+
+        startService(Intent(this, AlarmService::class.java))
     }
 
-    override fun onStart() {
-        super.onStart()
-        alarmSet()
+    private fun requestPostNotificationsPermission() {
+        if (ContextCompat.checkSelfPermission(this, PERMISSION_POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(PERMISSION_POST_NOTIFICATIONS), REQUEST_CODE_POST_NOTIFICATIONS)
+        }
     }
 
-    private fun alarmSet(){
-        alarmMgr = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
-            PendingIntent.getBroadcast(this, 0, intent, 0)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
+                                            grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_POST_NOTIFICATIONS) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                val notificationUtils = NotiUtils(this)
+                val notification = notificationUtils.getNotificationBuilder().build()
+                notificationUtils.getManager().notify(101, notification)
+            } else {
+                val message = "Povolení k notifikacím zamítnuto."
+                val duration = android.widget.Toast.LENGTH_SHORT
+                val toast = android.widget.Toast.makeText(applicationContext, message, duration)
+                toast.show()
+            }
         }
-
-        val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 2)
-            set(Calendar.MINUTE, 5)
-        }
-
-        alarmMgr?.setInexactRepeating(
-            AlarmManager.RTC,
-            calendar.timeInMillis,
-            AlarmManager.INTERVAL_FIFTEEN_MINUTES,
-            alarmIntent
-        )
     }
 
 }
-

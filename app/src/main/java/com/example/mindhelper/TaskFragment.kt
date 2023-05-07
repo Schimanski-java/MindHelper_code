@@ -1,143 +1,130 @@
 package com.example.mindhelper
 
-import android.content.Context
+import android.content.*
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.TextView
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.mindhelper.databinding.FragmentTaskBinding
-import java.util.*
 
-class TaskFragment : Fragment() {
 
-    private val viewModel: TaskFragmentViewModel by viewModels()
+class TaskFragment : Fragment(), LifecycleObserver {
+
     private lateinit var binding: FragmentTaskBinding
 
-    private val CHANNEL_ID = "channel1"
-    private val NOTIFICATION_ID = 1
+    private val firstTask: MutableList<String> = mutableListOf("Udělej si své oblíbené jídlo", "Pusť si svojí oblíbenou písničku", "Pusť si svůj oblíbený film/seriál", "Přečti si kapitolu svojí oblíbené knihy", "Pusť si svojí oblíbenou pohádku z dětství")
+    private val secondTask: MutableList<String> = mutableListOf("Projdi se do lesa", "Jdi na čerstvý vzduch", "Udělej si projížďku, autem nebo na kole", "Zahraj si svůj oblíbený sport", "Napiš své oblíbené osobě")
+    private val thirdTask: MutableList<String> = mutableListOf("Ukliď si pokoj a kochej se", "Udělej pro sebe něco hezkého (pochval se, udělej oblíbenou činnost)", "Převlékni si postel a udělej si útulné spací prostředí", "Vypij sklenici vody", "Udělej si vnitřní a vnější hygienu")
 
-
-
+    private lateinit var _currentFirstTask: String
+    val currentFirstTask: String
+        get() = _currentFirstTask
+    private lateinit var _currentSecTask: String
+    val currentSecTask: String
+        get() = _currentSecTask
+    private lateinit var _currentThirdTask: String
+    val currentThirdTask: String
+        get() = _currentThirdTask
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTaskBinding.inflate(inflater, container, false)
-        return binding.root
 
+        val sharedPrefs = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+        binding.checkTaskOne.isChecked = sharedPrefs.getBoolean("checkbox1", false)
+        binding.checkTaskTwo.isChecked = sharedPrefs.getBoolean("checkbox2", false)
+        binding.checkTaskThree.isChecked = sharedPrefs.getBoolean("checkbox3", false)
+
+        _currentFirstTask = sharedPrefs.getString("task1", firstTask.random())!!
+        _currentSecTask = sharedPrefs.getString("task2", secondTask.random())!!
+        _currentThirdTask = sharedPrefs.getString("task3", thirdTask.random())!!
+
+        binding.apply {
+            checkTaskOne.text = currentFirstTask
+            checkTaskTwo.text = currentSecTask
+            checkTaskThree.text = currentThirdTask
+        }
+
+
+        binding.checkTaskOne.setOnCheckedChangeListener { _, isChecked ->
+            sharedPrefs.edit().putBoolean("checkbox1", isChecked).apply()
+            updateCheckboxes()
+        }
+        binding.checkTaskTwo.setOnCheckedChangeListener { _, isChecked ->
+            sharedPrefs.edit().putBoolean("checkbox2", isChecked).apply()
+            updateCheckboxes()
+        }
+        binding.checkTaskThree.setOnCheckedChangeListener { _, isChecked ->
+            sharedPrefs.edit().putBoolean("checkbox3", isChecked).apply()
+            updateCheckboxes()
+        }
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateCheckboxes()
 
-        binding.checkTaskOne.isChecked = load("checkTaskOne")
-        binding.checkTaskTwo.isChecked = load("checkTaskTwo")
-        binding.checkTaskThree.isChecked = load("checkTaskThree")
-        binding.checkTaskOne.isEnabled = load("checkTaskOneEnabled")
-        binding.checkTaskTwo.isEnabled = load("checkTaskTwoEnabled")
-        binding.checkTaskThree.isEnabled = load("checkTaskThreeEnabled")
-
-        viewModel.changeTasks()
-        generateRandTask()
-        setCheckedChangedListener()
-        binding.buttonRefresh.setOnClickListener {
-            dailyRefresh()
-        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i("NOTE","onDestroy")
-        save("checkTaskOne",binding.checkTaskOne.isChecked())
-        save("checkTaskTwo",binding.checkTaskTwo.isChecked())
-        save("checkTaskThree",binding.checkTaskThree.isChecked())
-        save("checkTaskOneEnabled",binding.checkTaskOne.isEnabled())
-        save("checkTaskTwoEnabled",binding.checkTaskTwo.isEnabled())
-        save("checkTaskThreeEnabled",binding.checkTaskThree.isEnabled())
-        saveString("stringDone",binding.textView2.toString())
+    override fun onResume() {
+        super.onResume()
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+            updateCheckboxesReceiver,
+            IntentFilter("com.example.mindhelper.UPDATE_CHECKBOXES")
+        )
     }
 
-    private fun load(name: String): Boolean {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return false
-        return sharedPref.getBoolean(name, false)
+    override fun onPause() {
+        super.onPause()
+        updateCheckboxes()
+        LocalBroadcastManager.getInstance(requireContext())
+            .unregisterReceiver(updateCheckboxesReceiver)
     }
 
-
-    private fun save(name: String, boolean: Boolean) {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
-            putBoolean(name, boolean)
-            apply()
-        }
-    }
-
-    private fun saveString(name: String, text: String) {
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
-            putString(name, text)
-            apply()
-        }
-    }
-
-
-    private fun generateRandTask(){
-        binding.checkTaskOne.text = viewModel.currentFirstTask
-        binding.checkTaskTwo.text = viewModel.currentSecTask
-        binding.checkTaskThree.text = viewModel.currentThirdTask
-    }
-
-    private fun dailyRefresh(){
-        reloadFragment()
-        //addNotification()
-    }
-
-    private fun reloadFragment(){
-        binding.checkTaskOne.isEnabled = true
-        binding.checkTaskTwo.isEnabled = true
-        binding.checkTaskThree.isEnabled = true
-        binding.checkTaskOne.isChecked = false
-        binding.checkTaskTwo.isChecked = false
-        binding.checkTaskThree.isChecked = false
-        generateRandTask()
-    }
-
-    private fun setCheckedChangedListener() {
-        listOf(binding.checkTaskOne,binding.checkTaskTwo,binding.checkTaskThree).forEach {
-            it.setOnCheckedChangeListener{ _ , _ ->
-                if(binding.checkTaskOne.isChecked && binding.checkTaskTwo.isChecked && binding.checkTaskThree.isChecked) {
-                    binding.checkTaskOne.isEnabled = false
-                    binding.checkTaskTwo.isEnabled = false
-                    binding.checkTaskThree.isEnabled = false
-                    binding.textView2.setText(R.string.splneno)
-
-                }
+    private val updateCheckboxesReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            binding.apply {
+                checkTaskOne.text = currentFirstTask
+                checkTaskTwo.text = currentSecTask
+                checkTaskThree.text = currentThirdTask
+                checkTaskOne.isChecked = false
+                checkTaskTwo.isChecked = false
+                checkTaskThree.isChecked = false
+                textView2.text = ""
             }
         }
     }
-   /* private fun addNotification() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        val notiBuilder = NotificationCompat.Builder(requireContext(),CHANNEL_ID)
-        notiBuilder.setSmallIcon(R.drawable.ic_stat_name)
-        notiBuilder.setContentTitle("Nové úkoly")
-        notiBuilder.setContentText("Nové úkoly jsou k dispozci")
-        notiBuilder.priority = NotificationCompat.PRIORITY_DEFAULT
-        notiBuilder.setContentIntent(pendingIntent)
-        notiBuilder.setAutoCancel(true)
-        val notiManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        with(notiManager) {
-            notify(NOTIFICATION_ID, notiBuilder.build())
+
+    private fun updateCheckboxes() {
+        val allChecked = binding.checkTaskOne.isChecked && binding.checkTaskTwo.isChecked && binding.checkTaskThree.isChecked
+        binding.checkTaskOne.isEnabled = !allChecked || binding.checkTaskOne.isChecked
+        binding.checkTaskTwo.isEnabled = !allChecked || binding.checkTaskTwo.isChecked
+        binding.checkTaskThree.isEnabled = !allChecked || binding.checkTaskThree.isChecked
+
+        if (allChecked) {
+            binding.checkTaskOne.isEnabled = false
+            binding.checkTaskTwo.isEnabled = false
+            binding.checkTaskThree.isEnabled = false
+            binding.textView2.setText(R.string.splneno)
         }
-    }*/
-
-
-
+    }
 }
+
+
 
 
 
