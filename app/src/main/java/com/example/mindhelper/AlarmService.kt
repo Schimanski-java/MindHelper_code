@@ -31,8 +31,8 @@ class AlarmService : Service() {
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 12)
-            set(Calendar.MINUTE, 30)
+            set(Calendar.HOUR_OF_DAY, 10)
+            set(Calendar.MINUTE, 0)
         }
 
         alarmMgr?.cancel(alarmIntent)
@@ -44,5 +44,4 @@ class AlarmService : Service() {
             alarmIntent
         )
     }
-
 }

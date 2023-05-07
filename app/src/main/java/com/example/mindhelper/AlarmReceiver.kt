@@ -1,13 +1,10 @@
 package com.example.mindhelper
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.edit
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
 
